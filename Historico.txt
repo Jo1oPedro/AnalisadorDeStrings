@@ -1,0 +1,11 @@
+Verify if a element is a letter or not {
+    https://stackoverflow.com/questions/14230986/how-can-i-check-if-a-char-is-a-letter-or-a-number
+}
+
+ctype_digit {
+    https://www.php.net/manual/en/function.ctype-digit.php
+}
+
+ctype_alpha {
+    https://www.php.net/manual/en/function.ctype-alpha.php
+}
