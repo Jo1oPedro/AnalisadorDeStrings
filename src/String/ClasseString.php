@@ -4,8 +4,8 @@ namespace Trabalho\String;
 class ClasseString 
 {
     
-    private $stringTeste = [];
-
+    private array $stringTeste = [];
+    private array $tagsDefinidasPeloUsuario = [];
 
     public function __construct(private string $string)
     {   
@@ -53,16 +53,26 @@ class ClasseString
                     break;
                 }
             }
-            if($this->string[$i] != ' ') {
+            if($this->string[$i] != ' ' && $this->string[$i] != '=') {
                 if(!isset($this->stringTeste[$contTags])) {
                     $this->stringTeste[$contTags] = '';
                     $this->stringTeste[$contTags] .= $this->string[$i];
                 } else {
                     $this->stringTeste[$contTags] .= $this->string[$i]; 
                 }
-            } else {
-                $contTags++;
+            }
+            if($this->string[$i] == ' ') {
+                if(isset($this->stringTeste[$contTags])) {
+                    $contTags++;
+                }
                 $this->stringTeste[$contTags] = '1espaçoEmBranco';
+                $contTags++;
+            }
+            if($this->string[$i] == '=') {
+                if(isset($this->stringTeste[$contTags])) {
+                    $contTags++;
+                }
+                $this->stringTeste[$contTags] = '=';
                 $contTags++;
             }
         }
@@ -90,7 +100,30 @@ class ClasseString
             if($this->stringTeste[$cont][0] == '/') {
                 $tags [] = ['is_comment' => true];
             }
+            if($this->stringTeste[$cont] == '=') {
+                $tags [] = ['is_equal' => true];
+            }
         }
         return $tags;
+    }
+
+    public function defineTagsDoUsuario(String $tag): void
+    {
+        $definicaoDaTag = strpos($tag, ':');
+        $nameTag = substr($tag, 0, $definicaoDaTag);
+        $tag = trim(substr($tag, $definicaoDaTag+1, strlen($tag)));
+        $this->tagsDefinidasPeloUsuario[$nameTag] = '';
+        for($i = $definicaoDaTag+1; $i < strlen($tag); $i++) 
+        {
+            $this->tagsDefinidasPeloUsuario[$nameTag] .= $tag[$i];
+        }
+
+        print_r($this->tagsDefinidasPeloUsuario);
+    }
+
+    public function verificaStringDoUsuario(/*String $string*/): void 
+    {
+        $this->string = $this->tagsDefinidasPeloUsuario['A']; 
+        print_r($this->string);
     }
 }
