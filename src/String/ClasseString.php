@@ -1,7 +1,10 @@
 <?php
 
 namespace Trabalho\String;
-class ClasseString 
+
+use Trabalho\Arquivo\Arquivo;
+
+class ClasseString // mudar o nome da classe para comando
 {
     
     private array $stringTeste = [];
@@ -121,9 +124,22 @@ class ClasseString
         print_r($this->tagsDefinidasPeloUsuario);
     }
 
-    public function verificaStringDoUsuario(/*String $string*/): void 
+    public function validaStringDoUsuario(String $string): void 
     {
         $this->string = $this->tagsDefinidasPeloUsuario['A']; 
         print_r($this->string);
     }
+
+    /*public static function validaTag(string $string): bool
+    {   
+        $inicioTag = strpos($string, ': ');
+        $definicaoTag = self::is_letter($string[$inicioTag+1]);
+        if(!$inicioTag || !$definicaoTag) {
+            echo PHP_EOL . 'Tag inserida invalida';
+            exit();
+        }
+        if(Arquivo)
+        exit();
+    }*/
+
 }

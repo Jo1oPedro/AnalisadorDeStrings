@@ -9,3 +9,12 @@ ctype_digit {
 ctype_alpha {
     https://www.php.net/manual/en/function.ctype-alpha.php
 }
+
+passing-a-file-reference-as-a-function-parameter {
+    https://stackoverflow.com/questions/16112347/passing-a-file-reference-as-a-function-parameter
+
+}
+
+array_contains {
+    https://stackoverflow.com/questions/2124527/string-contains-any-items-in-an-array-case-insensitive
+}
