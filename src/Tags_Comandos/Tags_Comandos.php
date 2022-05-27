@@ -30,7 +30,10 @@ class Tags_Comandos
     public function isTag(string $string) {
         $tags = strpos($string, ':');
         $tag = substr($string, 0, $tags);
-        return in_array($tag, $this->tags);
+        if(in_array($tag, $this->tags)) {
+            return substr($string, $tags+2, 1) != ' '; // a tag só pode ter um único espaço após os ':', por isso verifico +2
+        }
+        //return in_array($tag, $this->tags);
     }
 }
 

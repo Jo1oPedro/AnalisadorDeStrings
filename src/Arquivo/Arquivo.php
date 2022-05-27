@@ -7,19 +7,9 @@ class Arquivo
 
     public function carregaArquivos(array &$comandos, array &$tags): void
     {
-        //$arquivoDeComandos = fopen('comandosValidos.txt', 'r');
-        //$arquivoDeTags = fopen('tagsValidas.txt', 'r');
-        /*while(!feof($arquivoDeComandos)) {
-            $comandos[] = fgets($arquivoDeComandos);
-        }*/
         $comandos = file('comandosValidos.txt');
-        /*while(!feof($arquivoDeTags)) {
-            $tags[] = fgets($arquivoDeTags);
-        }*/
         $tags = file('tagsValidas.txt');
         $this->retiraEspacosEmbranco($comandos, $tags);
-        //self::fechaArquivo($arquivoDeComandos);
-        //self::fechaArquivo($arquivoDeTags);
     }
 
     public function salvaTags(string $caminhoDoArquivo, array $arrayDeTags) 
@@ -41,12 +31,11 @@ class Arquivo
             echo 'Erro ao abrir o arquivo de comandos';
             exit();
         }
-        
         stream_copy_to_stream($arquivoDeComandos, STDOUT);
         $this->fechaArquivo($arquivoDeComandos);
     }
 
-    public function retiraEspacosEmbranco(&$comandos, &$tags): void
+    public function retiraEspacosEmbranco(mixed &$comandos, mixed &$tags): void
     {
         $comandos = array_map('trim', $comandos);  
         $tags = array_map('trim', $tags); 

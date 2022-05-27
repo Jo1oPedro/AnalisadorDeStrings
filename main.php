@@ -9,11 +9,20 @@ use Trabalho\Tags_Comandos\Tags_Comandos;
 $tags_comandos = new Tags_Comandos();
 $opcao = [];
 
+$teste = 'dale1= a a1 /*teste*/';
+$string = new ClasseString($teste);
+
 do {
     //ClasseString::validaTag(fgets(STDIN));
-    $tags_comandos->isTag(fgets(STDIN));
-    $opcao [] = $string->validaString(fgets(STDIN));
-} while(!$tags_comandos->isCommand($opcao[count($opcao)-1]));
+    $tagInvalida = true;
+    $tag = fgets(STDIN);
+    if($tags_comandos->isTag($tag)) {
+        $opcao [] = $tag;//$string->validaStringDoUsuario($tag);
+        $tagInvalida = false;
+    }
+} while(!$tags_comandos->isCommand($opcao[count($opcao)-1]) && !$tagInvalida);
+
+$string->defineTagsDoUsuario($opcao[0]); // vai salvar todas as tags inseridas pelo usuario no sistema
 
 exit();
 
@@ -27,11 +36,6 @@ $message = match (fgets(STDIN)) {
     //7 => $arquivo->imprime(),
     default => 'Invalid Input !',
 };
-
-$teste = 'dale1= a a1 /*teste*/';
-
-$string = new ClasseString($teste);
-
 
 $tags = $string->defineTags();
 $nome = [];
