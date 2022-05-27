@@ -24,6 +24,12 @@ class Tags_Comandos
 
     public function isCommand(string $comando) {
         $comando = substr($comando, 0, 2);
+        if(in_array($comando, $this->comandos)) {
+            if(!((substr($comando, 3, 1) == ' ') && (substr($comando, 4, 1) != ' '))) {
+                echo 'Comando invalido!';
+                exit();
+            }
+        }
         return in_array($comando, $this->comandos);
     }
 
@@ -31,9 +37,12 @@ class Tags_Comandos
         $tags = strpos($string, ':');
         $tag = substr($string, 0, $tags);
         if(in_array($tag, $this->tags)) {
-            return substr($string, $tags+2, 1) != ' '; // a tag só pode ter um único espaço após os ':', por isso verifico +2
+            if(!((substr($string, $tags+1, 1) == ' ') && (substr($string, $tags+2, 1) != ' '))) {
+                echo 'Tag invalida!';
+                exit();
+            } // a tag só pode ter um único espaço após os ':', por isso verifico +2
         }
-        //return in_array($tag, $this->tags);
+        return in_array($tag, $this->tags);
     }
 }
 
