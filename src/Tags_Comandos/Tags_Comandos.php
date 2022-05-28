@@ -6,6 +6,8 @@ use Trabalho\Arquivo\Arquivo;
 
 class Tags_Comandos 
 {
+    
+    private array $tagsDefinidasPeloUsuario = [];
 
     public function __construct(private array $comandos = [], private array $tags = [], private Arquivo $arquivo = new Arquivo())
     { 
@@ -23,14 +25,14 @@ class Tags_Comandos
     }
 
     public function isCommand(string $comando) {
-        $comando = substr($comando, 0, 2);
-        if(in_array($comando, $this->comandos)) {
-            if(!((substr($comando, 3, 1) == ' ') && (substr($comando, 4, 1) != ' '))) {
+        $codigoDoComando = substr($comando, 0, 2);
+        if(in_array($codigoDoComando, $this->comandos)) {
+            if(!((substr($comando, 2, 1) == ' ') && (substr($comando, 3, 1) != ' '))) { // problema em usar substr quando a string tem 'T', não sei o porq
                 echo 'Comando invalido!';
                 exit();
             }
         }
-        return in_array($comando, $this->comandos);
+        return in_array($codigoDoComando, $this->comandos);
     }
 
     public function isTag(string $string) {
@@ -43,6 +45,21 @@ class Tags_Comandos
             } // a tag só pode ter um único espaço após os ':', por isso verifico +2
         }
         return in_array($tag, $this->tags);
+    }
+
+    public function defineTagsDoUsuario(array $tags/*String $tag*/): void // define um array com as keys sendo as tags do usuario(INT, VAR E ETC) e o valor do array sendo o restante(515, abc123, arroz)
+    {
+        foreach($tags as $tag) {
+            $definicaoDaTag = strpos($tag, ':');
+            $nameTag = substr($tag, 0, $definicaoDaTag);
+            $definicaoTag = trim(substr($tag, $definicaoDaTag+1, strlen($tag)));
+            $this->tagsDefinidasPeloUsuario[$nameTag] = '';
+            for($i = 0; $i < strlen($definicaoTag); $i++) 
+            {
+                $this->tagsDefinidasPeloUsuario[$nameTag] .= $definicaoTag[$i];
+            }
+        }
+        $this->tagsDefinidasPeloUsuario;
     }
 }
 

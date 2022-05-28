@@ -110,19 +110,6 @@ class ClasseString // mudar o nome da classe para comando
         return $tags;
     }
 
-    public function defineTagsDoUsuario(String $tag): void // define um array com as keys sendo as tags do usuario(INT, VAR E ETC) e o valor do array sendo o restante(515, abc123, arroz)
-    {
-        $definicaoDaTag = strpos($tag, ':');
-        $nameTag = substr($tag, 0, $definicaoDaTag);
-        $definicaoTag = trim(substr($tag, $definicaoDaTag+1, strlen($tag)));
-        $this->tagsDefinidasPeloUsuario[$nameTag] = '';
-        for($i = 0; $i < strlen($definicaoTag); $i++) 
-        {
-            $this->tagsDefinidasPeloUsuario[$nameTag] .= $definicaoTag[$i];
-        }
-        print_r($this->tagsDefinidasPeloUsuario);
-    }
-
     public function validaStringDoUsuario(String $string): void 
     {
         //$this->string = $this->tagsDefinidasPeloUsuario['A']; 

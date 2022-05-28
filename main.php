@@ -11,7 +11,8 @@ $opcao = [];
 
 $teste = 'dale1= a a1 /*teste*/';
 $string = new ClasseString($teste);
-
+$tagInvalida;
+$escolha = '';
 do {
     //ClasseString::validaTag(fgets(STDIN));
     $tagInvalida = true;
@@ -19,23 +20,30 @@ do {
     if($tags_comandos->isTag($tag)) {
         $opcao [] = $tag;//$string->validaStringDoUsuario($tag);
         $tagInvalida = false;
+    }else if($tags_comandos->isCommand($tag)) {
+        $escolha = substr($tag, 0, 2);
+    }else {
+        echo 'Entrada invalida';
+        exit();
     }
-} while(!$tags_comandos->isCommand($opcao[count($opcao)-1]) && !$tagInvalida);
+} while(!$tagInvalida);
 
-$string->defineTagsDoUsuario($opcao[0]); // vai salvar todas as tags inseridas pelo usuario no sistema
+//$tags_comandos->defineTagsDoUsuario($opcao); // vai salvar todas as tags inseridas pelo usuario no sistema
 
-exit();
-
-$message = match (fgets(STDIN)) {
-    1 => 'Monday',
-    2 => 'Tuesday',
-    3 => 'Wednesday',
-    4 => 'Thursday',
-    5 => 'Friday',
-    6 => 'Saturday',
+$message = match ($escolha) {
+    ':d' => 'oi',
+    ':c' => 'Tuesday',
+    ':o' => $tags_comandos->defineTagsDoUsuario($opcao), // vai salvar todas as tags inseridas pelo usuario no sistema
+    ':p' => $string->defineTags(),
+    ':a' => 'Friday',
+    ':l' => 'Saturday',
+    ':q' => 'Saturday',
+    ':s' => 'Saturday',
     //7 => $arquivo->imprime(),
     default => 'Invalid Input !',
 };
+
+exit();
 
 $tags = $string->defineTags();
 $nome = [];
