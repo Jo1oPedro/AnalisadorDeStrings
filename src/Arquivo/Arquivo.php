@@ -14,18 +14,15 @@ class Arquivo
 
     public function salvaTags(string $caminhoDoArquivo, array $arrayDeTags) 
     {
-        //rename('C:\Users\João\Desktop\testeLeitura\cursos.txt', 'cursos.txt');
         if(!file_exists($caminhoDoArquivo)) {
-            'O arquivo requisitado não existe';
+            echo 'O arquivo requisitado não existe';
             exit();
         }
-        file_put_contents("C:\Users\João\Desktop\Reserva\a.txt", implode("\n", $arrayDeTags), FILE_APPEND);
+        file_put_contents($caminhoDoArquivo, implode("\n", $arrayDeTags), FILE_APPEND);
     }
 
     public function exibeComandos(): void
     {
-        //$arquivoDeComandos = fopen('comandos.txt', 'r');
-        //rename("C:\Users\João\Desktop\Reserva\comando2.txt.txt", 'comando2.txt');
         $arquivoDeComandos = fopen("comandosUsuario.txt", 'r');
         if(!$arquivoDeComandos) {
             echo 'Erro ao abrir o arquivo de comandos';

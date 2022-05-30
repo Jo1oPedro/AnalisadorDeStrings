@@ -18,3 +18,7 @@ passing-a-file-reference-as-a-function-parameter {
 array_contains {
     https://stackoverflow.com/questions/2124527/string-contains-any-items-in-an-array-case-insensitive
 }
+
+problema com utf8 {
+    https://stackoverflow.com/questions/2236668/file-get-contents-breaks-up-utf-8-characters
+}

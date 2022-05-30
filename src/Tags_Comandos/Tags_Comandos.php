@@ -47,7 +47,7 @@ class Tags_Comandos
         return in_array($tag, $this->tags);
     }
 
-    public function defineTagsDoUsuario(array $tags/*String $tag*/): void // define um array com as keys sendo as tags do usuario(INT, VAR E ETC) e o valor do array sendo o restante(515, abc123, arroz)
+    public function defineTagsDoUsuario(array $tags, string $caminhoDoArquivo): void // define um array com as keys sendo as tags do usuario(INT, VAR E ETC) e o valor do array sendo o restante(515, abc123, arroz)
     {
         foreach($tags as $tag) {
             $definicaoDaTag = strpos($tag, ':');
@@ -59,7 +59,7 @@ class Tags_Comandos
                 $this->tagsDefinidasPeloUsuario[$nameTag] .= $definicaoTag[$i];
             }
         }
-        $this->tagsDefinidasPeloUsuario;
+        $this->arquivo->salvaTags(mb_substr($caminhoDoArquivo, 3), $this->tagsDefinidasPeloUsuario);
     }
 }
 
