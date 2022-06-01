@@ -14,7 +14,7 @@ $escolha = '';
 
 do {
     $tagInvalida = true;
-    $tag = fgets(STDIN);
+    $tag = (string)readline();
     if($tags_comandos->isTag($tag)) {
         $tagDefinidaPeloUsuario [] = $tag;//$string->validaStringDoUsuario($tag);
         $tagInvalida = false;
