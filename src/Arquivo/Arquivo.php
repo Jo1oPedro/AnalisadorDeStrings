@@ -14,6 +14,7 @@ class Arquivo
 
     public function salvaTags(string $caminhoDoArquivo, array $arrayDeTags) 
     {
+        $caminhoDoArquivo = str_replace('"', '', $caminhoDoArquivo);
         if(!file_exists($caminhoDoArquivo)) {
             echo 'O arquivo requisitado não existe';
             exit();
