@@ -1,8 +1,13 @@
 <?php
 
 require_once 'autoload.php';
+
+use Trabalho\Arquivo\Arquivo;
 use Trabalho\String\ClasseString;
 use Trabalho\Tags_Comandos\Tags_Comandos;
+
+$arquivo = new Arquivo();
+//$arquivo->exibeComandos();
 
 $tags_comandos = new Tags_Comandos();
 $tagDefinidaPeloUsuario = [];

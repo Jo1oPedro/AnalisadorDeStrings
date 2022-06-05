@@ -111,8 +111,6 @@ class ClasseString // mudar o nome da classe para comando
                 $tags [] = ['is_equal' => true];
             }
         }
-        print_r($tags);
-        exit();
         return $tags;
     }
 

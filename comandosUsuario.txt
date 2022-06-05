@@ -1,9 +1,9 @@
 TAGS                                    DEFINICÕES                               EXEMPLOS
-:d /////// Realiza a divisão em tags da string do arquivo informado         //////////EXEMPLO => :dinput.txt
-:C /////// Carrega um arquivo com definições de tags                        //////////EXEMPLO => :ctags.lex
-:0 /////// Especifica o caminho do arquivo de saída para a divisão em tags  //////////EXEMPLO => :ooutput.txt
-:P /////// Realiza a divisão em tags da entrada informada                   //////////EXEMPLO => :px=1037
+:d /////// Realiza a divisão em tags da string do arquivo informado         //////////EXEMPLO => :d input.txt
+:C /////// Carrega um arquivo com definições de tags                        //////////EXEMPLO => :c tags.lex
+:0 /////// Especifica o caminho do arquivo de saída para a divisão em tags  //////////EXEMPLO => :o output.txt
+:P /////// Realiza a divisão em tags da entrada informada                   //////////EXEMPLO => :p x=1037
 :a /////// Lista as definições formais dos autômatos em memória             //////////EXEMPLO => :a
 :1 /////// Lista as definições de tag válidas                               //////////EXEMPLO => :1
 :q /////// Sair do programa                                                 //////////EXEMPLO => :q
-:S /////// Salvar as tags                                                   //////////EXEMPLO => :sfile.txt
+:S /////// Salvar as tags                                                   //////////EXEMPLO => :s file.txt
