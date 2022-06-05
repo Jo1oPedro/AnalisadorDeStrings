@@ -9,7 +9,6 @@ class Tags_Comandos
     
     private array $tagsDefinidasPeloUsuario = [];
 
-
     public function __construct(private array $comandos = [], private array $tags = [], private Arquivo $arquivo = new Arquivo(), private array $tagsUnarias = [])
     { 
         $this->arquivo->carregaArquivos($this->comandos, $this->tags, $this->tagsUnarias);
@@ -64,12 +63,18 @@ class Tags_Comandos
                 $this->tagsDefinidasPeloUsuario[$nameTag] .= $definicaoTag[$i];
             }
         }
-        $this->arquivo->salvaTags(mb_substr($caminhoDoArquivo, 3), $this->tagsDefinidasPeloUsuario);
+        $this->arquivo->salvaTags($caminhoDoArquivo, $this->tagsDefinidasPeloUsuario);
     }
 
     public function isUnaryTag(string $tag){
        $tag = trim($tag);
        return in_array($tag, $this->tagsUnarias);
+    }
+
+    public function carregaTagsExternas($caminhoDoArquivo): void{
+        $tagsExternas = [];
+        $this->arquivo->carregaTagsExternas($caminhoDoArquivo, $tagsExternas);
+        $this->defineTagsDoUsuario($tagsExternas, "C:\Users\migue\Documents\Code\\faculdade\aspectos\AnalisadorDeStrings\\tagsValidas.txt");
     }
 }
 

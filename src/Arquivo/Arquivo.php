@@ -2,6 +2,8 @@
 
 namespace Trabalho\Arquivo;
 
+use Trabalho\String\ClasseString;
+
 class Arquivo 
 {
 
@@ -49,6 +51,17 @@ class Arquivo
         $comandos = array_map('trim', $comandos);  
         $tags = array_map('trim', $tags); 
         $tagsUnarias = array_map('trim', $tagsUnarias);
+    }
+
+    public function carregaTagsExternas(string $caminhoDoArquivo, mixed &$tagsExternas): void
+    {
+        $caminhoDoArquivo = trim(str_replace('"', '', $caminhoDoArquivo));
+        if(!file_exists($caminhoDoArquivo)) {
+            echo 'O arquivo requisitado não existe';
+            exit();
+        }
+
+        $tagsExternas = file($caminhoDoArquivo);
     }
 
     public function fechaArquivo(mixed $arquivoParaFechar): void 

@@ -20,7 +20,6 @@ $escolha = '';
 do {
     $tagInvalida = true;
     $tag = fgets(STDIN);//(string)readline();
-    $tags_comandos->isUnaryTag($tag);
     if($tags_comandos->isTag($tag)) {
         $tagDefinidaPeloUsuario [] = $tag;//$string->validaStringDoUsuario($tag);
         $tagInvalida = false;
@@ -35,9 +34,10 @@ do {
 $string->setString('dale5= b a1 /*teste2*/');
 $string->defineTags();
 
+$caminhoDoArquivo = "C:\Users\migue\Documents\diferentesTags.txt";
 $message = match ($escolha) {
     ':d' => 'oi',
-    ':c' => 'Tuesday',
+    ':c' => $tags_comandos->carregaTagsExternas($caminhoDoArquivo),
     ':o' => $tags_comandos->defineTagsDoUsuario($tagDefinidaPeloUsuario, $tag), // vai salvar todas as tags inseridas pelo usuario no sistema
     ':p' => $string->defineTags(),
     ':a' => 'Friday',
