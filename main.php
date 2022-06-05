@@ -20,10 +20,11 @@ $escolha = '';
 do {
     $tagInvalida = true;
     $tag = fgets(STDIN);//(string)readline();
+    $tags_comandos->isUnaryTag($tag);
     if($tags_comandos->isTag($tag)) {
         $tagDefinidaPeloUsuario [] = $tag;//$string->validaStringDoUsuario($tag);
         $tagInvalida = false;
-    }else if($tags_comandos->isCommand($tag)) {
+    }else if($tags_comandos->isUnaryTag($tag) || $tags_comandos->isCommand($tag)) {
         $escolha = substr($tag, 0, 2);
     }else {
         echo 'Entrada invalida';
@@ -41,7 +42,7 @@ $message = match ($escolha) {
     ':p' => $string->defineTags(),
     ':a' => 'Friday',
     ':l' => 'Saturday',
-    ':q' => 'Saturday',
+    ':q' => exit("Finalizando programa..."),
     ':s' => 'Saturday',
     //7 => $arquivo->imprime(),
     default => 'Invalid Input !',

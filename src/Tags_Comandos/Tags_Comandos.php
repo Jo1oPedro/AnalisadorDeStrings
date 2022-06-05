@@ -9,9 +9,10 @@ class Tags_Comandos
     
     private array $tagsDefinidasPeloUsuario = [];
 
-    public function __construct(private array $comandos = [], private array $tags = [], private Arquivo $arquivo = new Arquivo())
+
+    public function __construct(private array $comandos = [], private array $tags = [], private Arquivo $arquivo = new Arquivo(), private array $tagsUnarias = [])
     { 
-        $this->arquivo->carregaArquivos($this->comandos, $this->tags);
+        $this->arquivo->carregaArquivos($this->comandos, $this->tags, $this->tagsUnarias);
     }
 
     public function exibeComandos(): void
@@ -60,6 +61,11 @@ class Tags_Comandos
             }
         }
         $this->arquivo->salvaTags(mb_substr($caminhoDoArquivo, 3), $this->tagsDefinidasPeloUsuario);
+    }
+
+    public function isUnaryTag(string $tag){
+       $tag = trim($tag);
+       return in_array($tag, $this->tagsUnarias);
     }
 }
 

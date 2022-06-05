@@ -5,11 +5,12 @@ namespace Trabalho\Arquivo;
 class Arquivo 
 {
 
-    public function carregaArquivos(array &$comandos, array &$tags): void
+    public function carregaArquivos(array &$comandos, array &$tags, array &$tagsUnarias): void
     {
         $comandos = file('comandosValidos.txt');
         $tags = file('tagsValidas.txt');
-        $this->retiraEspacosEmbranco($comandos, $tags);
+        $tagsUnarias = file('tagsUnarias.txt');
+        $this->retiraEspacosEmbranco($comandos, $tags, $tagsUnarias);
     }
 
     public function salvaTags(string $caminhoDoArquivo, array $arrayDeTags) 
@@ -33,10 +34,11 @@ class Arquivo
         $this->fechaArquivo($arquivoDeComandos);
     }
 
-    public function retiraEspacosEmbranco(mixed &$comandos, mixed &$tags): void
+    public function retiraEspacosEmbranco(mixed &$comandos, mixed &$tags, mixed &$tagsUnarias): void
     {
         $comandos = array_map('trim', $comandos);  
         $tags = array_map('trim', $tags); 
+        $tagsUnarias = array_map('trim', $tagsUnarias);
     }
 
     public function fechaArquivo(mixed $arquivoParaFechar): void 
