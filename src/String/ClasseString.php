@@ -14,6 +14,10 @@ class ClasseString // mudar o nome da classe para comando
     {   
     }
 
+    public function setString(string $string) {
+        $this->string = $string;
+    }
+
     public function is_numeric(String $string): bool 
     {
         return ctype_digit($string);
@@ -107,6 +111,8 @@ class ClasseString // mudar o nome da classe para comando
                 $tags [] = ['is_equal' => true];
             }
         }
+        print_r($tags);
+        exit();
         return $tags;
     }
 

@@ -14,7 +14,7 @@ $escolha = '';
 
 do {
     $tagInvalida = true;
-    $tag = (string)readline();
+    $tag = fgets(STDIN);//(string)readline();
     if($tags_comandos->isTag($tag)) {
         $tagDefinidaPeloUsuario [] = $tag;//$string->validaStringDoUsuario($tag);
         $tagInvalida = false;
@@ -25,6 +25,9 @@ do {
         exit();
     }
 } while(!$tagInvalida);
+
+$string->setString('dale5= b a1 /*teste2*/');
+$string->defineTags();
 
 $message = match ($escolha) {
     ':d' => 'oi',
