@@ -20,6 +20,10 @@ class Tags_Comandos
         $this->arquivo->exibeComandos();
     }
 
+    public function exibeTagsValidas(): void{
+        $this->arquivo->exibeTagsValidas();
+    }
+
     public function salvaTags(string $caminhoDoArquivo, array $arrayDeTags): void 
     {   
         $this->arquivo->salvaTags($caminhoDoArquivo, $arrayDeTags);

@@ -34,6 +34,16 @@ class Arquivo
         $this->fechaArquivo($arquivoDeComandos);
     }
 
+    public function exibeTagsValidas(): void{
+        $tagsValidas = fopen("tagsValidas.txt", 'r');
+        if(!$tagsValidas){
+            echo 'Erro ao abrir o arquivo de tags válidas.';
+            exit();
+        }
+        stream_copy_to_stream($tagsValidas, STDOUT);
+        $this->fechaArquivo($tagsValidas);
+    }
+
     public function retiraEspacosEmbranco(mixed &$comandos, mixed &$tags, mixed &$tagsUnarias): void
     {
         $comandos = array_map('trim', $comandos);  
