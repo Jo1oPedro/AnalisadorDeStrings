@@ -17,12 +17,15 @@ class Arquivo
 
     public function salvaTags(string $caminhoDoArquivo, array $arrayDeTags) 
     {
-        $caminhoDoArquivo = trim(str_replace('"', '', $caminhoDoArquivo));
-        if(!file_exists($caminhoDoArquivo)) {
-            echo 'O arquivo requisitado não existe';
+        $arquivo = fopen($caminhoDoArquivo, 'w');
+        if(!$arquivo) {
+            echo 'Problema ao abrir o arquivo';
             exit();
         }
-        file_put_contents($caminhoDoArquivo, implode("\n", $arrayDeTags), FILE_APPEND);
+        foreach($arrayDeTags as $key => $tag) {
+            $tagDefinicao = $key . ": " . $tag . PHP_EOL;
+            fwrite($arquivo, $tagDefinicao);
+        }
     }
 
     public function exibeComandos(): void
