@@ -37,11 +37,11 @@ $string->defineTags();
 
 $caminhoDoArquivo = "C:\Users\migue\Documents\diferentesTags.txt";
 $message = match ($escolha) {
-    ':d' => 'teste',
+    ':d' => Aviso::mostrarAviso('warning', 'Funcionalidade ainda não implementada.'),
     ':c' => $tags_comandos->carregaTagsExternas($caminhoDoArquivo),
-    ':o' => $tags_comandos->defineTagsDoUsuario($tagDefinidaPeloUsuario, $tag), // vai salvar todas as tags inseridas pelo usuario no sistema
+    ':o' => Aviso::mostrarAviso('warning', 'Funcionalidade ainda não implementada.'), // vai salvar todas as tags inseridas pelo usuario no sistema
     ':p' => $string->defineTags(),
-    ':a' => 'Friday',
+    ':a' => Aviso::mostrarAviso('warning', 'Funcionalidade ainda não implementada.'),
     ':l' => $tags_comandos->exibeTagsValidas(),
     ':q' => Aviso::mostrarAviso('info', 'Finalizando o programa!'),
     ':s' => $tags_comandos->defineTagsDoUsuario($tagDefinidaPeloUsuario, $tag),
