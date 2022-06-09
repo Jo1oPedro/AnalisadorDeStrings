@@ -19,7 +19,8 @@ class Tags_Comandos
         $this->arquivo->exibeComandos();
     }
 
-    public function exibeTagsValidas(): void{
+    public function exibeTagsValidas(): void
+    {
         $this->arquivo->exibeTagsValidas();
     }
 
@@ -28,7 +29,8 @@ class Tags_Comandos
         $this->arquivo->salvaTags($caminhoDoArquivo, $arrayDeTags);
     }
 
-    public function isCommand(string $comando) {
+    public function isCommand(string $comando): bool
+    {
         $codigoDoComando = substr($comando, 0, 2);
         if(in_array($codigoDoComando, $this->comandos)) {
             if(!((substr($comando, 2, 1) == ' ') && (substr($comando, 3, 1) != ' '))) { // problema em usar substr quando a string tem 'T', não sei o porq
@@ -39,7 +41,8 @@ class Tags_Comandos
         return in_array($codigoDoComando, $this->comandos);
     }
 
-    public function isTag(string $string) {
+    public function isTag(string $string): bool
+    {
         $tags = strpos($string, ':');
         $tag = substr($string, 0, $tags);
         if(in_array($tag, $this->tags)) {
@@ -58,23 +61,27 @@ class Tags_Comandos
             $nameTag = substr($tag, 0, $definicaoDaTag);
             $definicaoTag = trim(substr($tag, $definicaoDaTag+1, strlen($tag)));
             $this->tagsDefinidasPeloUsuario[$nameTag] = '';
-            for($i = 0; $i < strlen($definicaoTag); $i++) 
-            {
+            for($i = 0; $i < strlen($definicaoTag); $i++){
                 $this->tagsDefinidasPeloUsuario[$nameTag] .= $definicaoTag[$i];
             }
         }
         $this->arquivo->salvaTags($caminhoDoArquivo, $this->tagsDefinidasPeloUsuario);
     }
 
-    public function isUnaryTag(string $tag){
+    public function isUnaryTag(string $tag): bool
+    {
        $tag = trim($tag);
        return in_array($tag, $this->tagsUnarias);
     }
 
-    public function carregaTagsExternas($caminhoDoArquivo): void{
+    public function carregaTagsExternas($caminhoDoArquivo): void
+    {
         $tagsExternas = [];
         $this->arquivo->carregaTagsExternas($caminhoDoArquivo, $tagsExternas);
-        $this->defineTagsDoUsuario($tagsExternas, "C:\Users\migue\Documents\Code\\faculdade\aspectos\AnalisadorDeStrings\\tagsValidas.txt");
+        foreach($tagsExternas as $tagsDoUsuario){
+            $this->isTag($tagsDoUsuario);
+        }
+        $this->defineTagsDoUsuario($tagsExternas, $caminhoDoArquivo);
     }
 }
 
