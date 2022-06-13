@@ -5,6 +5,7 @@ require_once 'autoload.php';
 use Trabalho\Arquivo\Arquivo;
 use Trabalho\String\ClasseString;
 use Trabalho\Tags_Comandos\Tags_Comandos;
+use Trabalho\Aviso\Aviso;
 
 $arquivo = new Arquivo();
 //$arquivo->exibeComandos();
@@ -36,14 +37,14 @@ $string->defineTags();
 
 $caminhoDoArquivo = "C:\Users\migue\Documents\diferentesTags.txt";
 $message = match ($escolha) {
-    ':d' => 'oi',
+    ':d' => Aviso::mostrarAviso('warning', 'Funcionalidade ainda não implementada.'),
     ':c' => $tags_comandos->carregaTagsExternas($caminhoDoArquivo),
-    ':o' => $tags_comandos->defineTagsDoUsuario($tagDefinidaPeloUsuario, $tag), // vai salvar todas as tags inseridas pelo usuario no sistema
+    ':o' => Aviso::mostrarAviso('warning', 'Funcionalidade ainda não implementada.'),
     ':p' => $string->defineTags(),
-    ':a' => 'Friday',
+    ':a' => Aviso::mostrarAviso('warning', 'Funcionalidade ainda não implementada.'),
     ':l' => $tags_comandos->exibeTagsValidas(),
-    ':q' => exit("Finalizando programa..."),
-    ':s' => 'Saturday',
+    ':q' => Aviso::mostrarAviso('info', 'Finalizando o programa!'),
+    ':s' => $tags_comandos->defineTagsDoUsuario($tagDefinidaPeloUsuario, $tag),
     //7 => $arquivo->imprime(),
     default => 'Invalid Input !',
 };

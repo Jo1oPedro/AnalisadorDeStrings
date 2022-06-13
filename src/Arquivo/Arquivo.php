@@ -17,6 +17,7 @@ class Arquivo
 
     public function salvaTags(string $caminhoDoArquivo, array $arrayDeTags) 
     {
+        
         $arquivo = fopen("C:\Users\João\Desktop\\teste.txt"/*$caminhoDoArquivo*/, 'w');
         if(!$arquivo) {
             echo 'Problema ao abrir o arquivo';
