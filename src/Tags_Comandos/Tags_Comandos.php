@@ -69,6 +69,7 @@ class Tags_Comandos
             }
         }
         $this->arquivo->salvaTags($caminhoDoArquivo, $this->tagsDefinidasPeloUsuario);
+        Aviso::mostrarAviso('info', 'Tags salvas com sucesso!');
     }
 
     public function isUnaryCommand(string $comandos): bool
@@ -85,6 +86,7 @@ class Tags_Comandos
             $this->isTag($tagsDoUsuario);
         }
         $this->defineTagsDoUsuario($tagsExternas, $caminhoDoArquivo);
+        Aviso::mostrarAviso('info', 'Tags carregadas com sucesso!');
     }
 }
 

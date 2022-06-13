@@ -12,13 +12,13 @@ class Aviso
     public static function mostrarAviso(string $tipo, string $mensagem){
         switch($tipo){
             case 'warning':
-                echo "[WARNING] ". $mensagem;
+                echo "[WARNING] ". $mensagem . "\n";
                 break;
             case 'info':
-                echo "[INFO] ". $mensagem;
+                echo "[INFO] ". $mensagem  . "\n";
                 break;
             case 'error':
-                echo "[ERROR] ". $mensagem;
+                echo "[ERROR] ". $mensagem . "\n";
                 exit();
             default:
                 echo $mensagem;
