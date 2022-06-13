@@ -23,9 +23,9 @@ do {
     if($tags_comandos->isTag($tag)) {
         $tagDefinidaPeloUsuario [] = $tag;//$string->validaStringDoUsuario($tag);
         $tagInvalida = false;
-    }else if($tags_comandos->isUnaryTag($tag) || $tags_comandos->isCommand($tag)) {
+    }else if($tags_comandos->isUnaryCommand($tag) || $tags_comandos->isCommand($tag)) {
         $escolha = substr($tag, 0, 2);
-    }else {
+    }else { 
         echo 'Entrada invalida';
         exit();
     }
@@ -47,6 +47,8 @@ $message = match ($escolha) {
     //7 => $arquivo->imprime(),
     default => 'Invalid Input !',
 };
+
+// mudar o :o para :s
 
 
 

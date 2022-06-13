@@ -7,22 +7,25 @@ use Trabalho\String\ClasseString;
 class Arquivo 
 {
 
-    public function carregaArquivos(array &$comandos, array &$tags, array &$tagsUnarias): void
+    public function carregaArquivos(array &$comandos, array &$tags, array &$ComandosUnarios): void
     {
         $comandos = file('comandosValidos.txt');
         $tags = file('tagsValidas.txt');
-        $tagsUnarias = file('tagsUnarias.txt');
-        $this->retiraEspacosEmbranco($comandos, $tags, $tagsUnarias);
+        $ComandosUnarios = file('ComandosUnarios.txt');
+        $this->retiraEspacosEmbranco($comandos, $tags, $ComandosUnarios);
     }
 
     public function salvaTags(string $caminhoDoArquivo, array $arrayDeTags) 
     {
-        $caminhoDoArquivo = trim(str_replace('"', '', $caminhoDoArquivo));
-        if(!file_exists($caminhoDoArquivo)) {
-            echo 'O arquivo requisitado não existe';
+        $arquivo = fopen("C:\Users\João\Desktop\\teste.txt"/*$caminhoDoArquivo*/, 'w');
+        if(!$arquivo) {
+            echo 'Problema ao abrir o arquivo';
             exit();
         }
-        file_put_contents($caminhoDoArquivo, implode("\n", $arrayDeTags), FILE_APPEND);
+        foreach($arrayDeTags as $key => $tag) {
+            $tagDefinicao = $key . ": " . $tag . PHP_EOL;
+            fwrite($arquivo, $tagDefinicao);
+        }
     }
 
     public function exibeComandos(): void
@@ -36,7 +39,8 @@ class Arquivo
         $this->fechaArquivo($arquivoDeComandos);
     }
 
-    public function exibeTagsValidas(): void{
+    public function exibeTagsValidas(): void
+    {
         $tagsValidas = fopen("tagsValidas.txt", 'r');
         if(!$tagsValidas){
             echo 'Erro ao abrir o arquivo de tags válidas.';
@@ -46,11 +50,11 @@ class Arquivo
         $this->fechaArquivo($tagsValidas);
     }
 
-    public function retiraEspacosEmbranco(mixed &$comandos, mixed &$tags, mixed &$tagsUnarias): void
+    public function retiraEspacosEmbranco(mixed &$comandos = [], mixed &$tags = [], mixed &$ComandosUnarios = []): void
     {
         $comandos = array_map('trim', $comandos);  
         $tags = array_map('trim', $tags); 
-        $tagsUnarias = array_map('trim', $tagsUnarias);
+        $ComandosUnarios = array_map('trim', $ComandosUnarios);
     }
 
     public function carregaTagsExternas(string $caminhoDoArquivo, mixed &$tagsExternas): void
@@ -62,6 +66,7 @@ class Arquivo
         }
 
         $tagsExternas = file($caminhoDoArquivo);
+        $this->retiraEspacosEmbranco(tags: $tagsExternas);
     }
 
     public function fechaArquivo(mixed $arquivoParaFechar): void 
