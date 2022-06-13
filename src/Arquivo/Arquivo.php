@@ -17,8 +17,10 @@ class Arquivo
 
     public function salvaTags(string $caminhoDoArquivo, array $arrayDeTags) 
     {
-        
-        $arquivo = fopen("C:\Users\João\Desktop\\teste.txt"/*$caminhoDoArquivo*/, 'w');
+        $caminhoDoArquivoTratado = strpos($caminhoDoArquivo, " ");
+        $caminhoDoArquivo = substr($caminhoDoArquivo, $caminhoDoArquivoTratado+1);
+        $caminhoDoArquivo = trim(str_replace('"', '', $caminhoDoArquivo));
+        $arquivo = fopen($caminhoDoArquivo, 'w');
         if(!$arquivo) {
             echo 'Problema ao abrir o arquivo';
             exit();
