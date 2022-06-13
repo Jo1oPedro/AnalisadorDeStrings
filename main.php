@@ -22,36 +22,37 @@ $string = new ClasseString($teste);
 $tagInvalida;
 $escolha = '';
 
-do {
-    $tagInvalida = true;
-    $tag = fgets(STDIN);//(string)readline();
-    if($tags_comandos->isTag($tag)) {
-        $tagDefinidaPeloUsuario [] = $tag;//$string->validaStringDoUsuario($tag);
-        $tagInvalida = false;
-    }else if($tags_comandos->isUnaryCommand($tag) || $tags_comandos->isCommand($tag)) {
-        $escolha = substr($tag, 0, 2);
-    }else { 
-        echo 'Entrada invalida';
-        exit();
-    }
-} while(!$tagInvalida);
+do{
+    do {
+        $tagInvalida = true;
+        $tag = fgets(STDIN);//(string)readline();
+        if($tags_comandos->isTag($tag)) {
+            $tagDefinidaPeloUsuario [] = $tag;//$string->validaStringDoUsuario($tag);
+            $tagInvalida = false;
+        }else if($tags_comandos->isUnaryCommand($tag) || $tags_comandos->isCommand($tag)) {
+            $escolha = substr($tag, 0, 2);
+        }else { 
+            Aviso::mostrarAviso('error', 'Entrada invalida.');;
+        }
+    } while(!$tagInvalida);
+    
+    $string->setString('dale5= b a1 /*teste2*/');
+    $string->defineTags();
+    
+    $message = match ($escolha) {
+        ':d' => Aviso::mostrarAviso('warning', 'Funcionalidade ainda não implementada.'),
+        ':c' => $tags_comandos->carregaTagsExternas($tag),
+        ':o' => Aviso::mostrarAviso('warning', 'Funcionalidade ainda não implementada.'),
+        ':p' => Aviso::mostrarAviso('warning', 'Funcionalidade ainda não implementada.'),
+        ':a' => Aviso::mostrarAviso('warning', 'Funcionalidade ainda não implementada.'),
+        ':l' => $tags_comandos->exibeTagsValidas(),
+        ':q' => Aviso::mostrarAviso('info', 'Finalizando o programa!'),
+        ':s' => $tags_comandos->defineTagsDoUsuario($tagDefinidaPeloUsuario, $tag),
+        //7 => $arquivo->imprime(),
+        default => 'Invalid Input !',
+    };
+} while(true);
 
-$string->setString('dale5= b a1 /*teste2*/');
-$string->defineTags();
-
-$caminhoDoArquivo = "C:\Users\migue\Documents\diferentesTags.txt";
-$message = match ($escolha) {
-    ':d' => Aviso::mostrarAviso('warning', 'Funcionalidade ainda não implementada.'),
-    ':c' => $tags_comandos->carregaTagsExternas($caminhoDoArquivo),
-    ':o' => Aviso::mostrarAviso('warning', 'Funcionalidade ainda não implementada.'),
-    ':p' => Aviso::mostrarAviso('warning', 'Funcionalidade ainda não implementada.'),
-    ':a' => Aviso::mostrarAviso('warning', 'Funcionalidade ainda não implementada.'),
-    ':l' => $tags_comandos->exibeTagsValidas(),
-    ':q' => Aviso::mostrarAviso('info', 'Finalizando o programa!'),
-    ':s' => $tags_comandos->defineTagsDoUsuario($tagDefinidaPeloUsuario, $tag),
-    //7 => $arquivo->imprime(),
-    default => 'Invalid Input !',
-};
 
 // mudar o :o para :s
 

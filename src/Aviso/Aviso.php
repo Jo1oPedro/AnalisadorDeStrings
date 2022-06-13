@@ -19,7 +19,7 @@ class Aviso
                 break;
             case 'error':
                 echo "[ERROR] ". $mensagem;
-                break;
+                exit();
             default:
                 echo $mensagem;
                 break;

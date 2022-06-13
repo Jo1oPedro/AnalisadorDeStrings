@@ -7,6 +7,7 @@ Miguel Sales de Almeida Lopes - 202076024
 namespace Trabalho\Tags_Comandos;
 
 use Trabalho\Arquivo\Arquivo;
+use Trabalho\Aviso\Aviso;
 
 class Tags_Comandos 
 {
@@ -38,8 +39,7 @@ class Tags_Comandos
         $codigoDoComando = substr($comando, 0, 2);
         if(in_array($codigoDoComando, $this->comandos)) {
             if(!((substr($comando, 2, 1) == ' ') && (substr($comando, 3, 1) != ' '))) { // problema em usar substr quando a string tem 'T', não sei o porq
-                echo 'Comando invalido!';
-                exit();
+                Aviso::mostrarAviso('error', 'Comando inválido.');
             }
         }
         return in_array($codigoDoComando, $this->comandos);
@@ -51,8 +51,7 @@ class Tags_Comandos
         $tag = substr($string, 0, $tags);
         if(in_array($tag, $this->tags)) {
             if(!((substr($string, $tags+1, 1) == ' ') && (substr($string, $tags+2, 1) != ' '))) {
-                echo 'Tag invalida!';
-                exit();
+                Aviso::mostrarAviso('error', 'Tag inválida.');
             } // a tag só pode ter um único espaço após os ':', por isso verifico +2
         }
         return in_array($tag, $this->tags);
@@ -85,7 +84,7 @@ class Tags_Comandos
         foreach($tagsExternas as $tagsDoUsuario) {
             $this->isTag($tagsDoUsuario);
         }
-        $this->defineTagsDoUsuario($tagsExternas, "C:\Users\migue\Documents\Code\\faculdade\aspectos\AnalisadorDeStrings\\tagsValidas.txt");
+        $this->defineTagsDoUsuario($tagsExternas, $caminhoDoArquivo);
     }
 }
 

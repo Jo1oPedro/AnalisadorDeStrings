@@ -6,6 +6,7 @@ Miguel Sales de Almeida Lopes - 202076024
 */
 namespace Trabalho\Arquivo;
 
+use Trabalho\Aviso\Aviso;
 use Trabalho\String\ClasseString;
 
 class Arquivo 
@@ -24,10 +25,9 @@ class Arquivo
         $caminhoDoArquivoTratado = strpos($caminhoDoArquivo, " ");
         $caminhoDoArquivo = substr($caminhoDoArquivo, $caminhoDoArquivoTratado+1);
         $caminhoDoArquivo = trim(str_replace('"', '', $caminhoDoArquivo));
-        $arquivo = fopen($caminhoDoArquivo, 'w');
+        $arquivo = @fopen($caminhoDoArquivo, 'w');
         if(!$arquivo) {
-            echo 'Problema ao abrir o arquivo';
-            exit();
+            Aviso::mostrarAviso('error', 'Houve um erro ao abrir o arquivo.');
         }
         foreach($arrayDeTags as $key => $tag) {
             $tagDefinicao = $key . ": " . $tag . PHP_EOL;
@@ -39,8 +39,7 @@ class Arquivo
     {
         $arquivoDeComandos = fopen("comandosUsuario.txt", 'r');
         if(!$arquivoDeComandos) {
-            echo 'Erro ao abrir o arquivo de comandos';
-            exit();
+            Aviso::mostrarAviso('error', 'Houve um erro ao abrir o arquivo.');
         }
         stream_copy_to_stream($arquivoDeComandos, STDOUT);
         $this->fechaArquivo($arquivoDeComandos);
@@ -50,8 +49,7 @@ class Arquivo
     {
         $tagsValidas = fopen("tagsValidas.txt", 'r');
         if(!$tagsValidas){
-            echo 'Erro ao abrir o arquivo de tags válidas.';
-            exit();
+            Aviso::mostrarAviso('error', 'Houve um erro ao abrir o arquivo.');
         }
         stream_copy_to_stream($tagsValidas, STDOUT);
         $this->fechaArquivo($tagsValidas);
@@ -66,12 +64,12 @@ class Arquivo
 
     public function carregaTagsExternas(string $caminhoDoArquivo, mixed &$tagsExternas): void
     {
-        $caminhoDoArquivo = trim(str_replace('"', '', $caminhoDoArquivo));
+        $position = strpos($caminhoDoArquivo, ' ');
+        $caminhoFormatado = substr($caminhoDoArquivo, $position + 1);
+        $caminhoDoArquivo = trim(str_replace('"', '', $caminhoFormatado));
         if(!file_exists($caminhoDoArquivo)) {
-            echo 'O arquivo requisitado não existe';
-            exit();
+            Aviso::mostrarAviso('error', 'O arquivo requisitado não existe.');
         }
-
         $tagsExternas = file($caminhoDoArquivo);
         $this->retiraEspacosEmbranco(tags: $tagsExternas);
     }
