@@ -1,5 +1,9 @@
 <?php
-
+/* 
+Alunos:
+João Pedro Ferreira Pedreira - 202076009
+Miguel Sales de Almeida Lopes - 202076024
+*/
 namespace Trabalho\Tags_Comandos;
 
 use Trabalho\Arquivo\Arquivo;

@@ -1,5 +1,9 @@
 <?php
-
+/* 
+Alunos:
+João Pedro Ferreira Pedreira - 202076009
+Miguel Sales de Almeida Lopes - 202076024
+*/
 require_once 'autoload.php';
 use Trabalho\String\ClasseString;
 
