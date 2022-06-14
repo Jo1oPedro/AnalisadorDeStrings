@@ -52,6 +52,7 @@ class Arquivo
             Aviso::mostrarAviso('error', 'Houve um erro ao abrir o arquivo.');
         }
         stream_copy_to_stream($tagsValidas, STDOUT);
+        echo PHP_EOL;
         $this->fechaArquivo($tagsValidas);
     }
 
