@@ -38,7 +38,7 @@ class Tags_Comandos
     {
         $codigoDoComando = substr($comando, 0, 2);
         if(in_array($codigoDoComando, $this->comandos)) {
-            if(!((substr($comando, 2, 1) == ' ') && (substr($comando, 3, 1) != ' '))) { // problema em usar substr quando a string tem 'T', não sei o porq
+            if(!((substr($comando, 2, 1) == ' ') && (substr($comando, 3, 1) != ' '))) {
                 Aviso::mostrarAviso('error', 'Comando inválido.');
             }
         }

@@ -8,7 +8,7 @@ namespace Trabalho\String;
 
 use Trabalho\Arquivo\Arquivo;
 
-class ClasseString // mudar o nome da classe para comando
+class ClasseString 
 {
     
     private array $stringTeste = [];
@@ -118,11 +118,11 @@ class ClasseString // mudar o nome da classe para comando
         return $tags;
     }
 
-    public function validaStringDoUsuario(String $string): void 
-    {
-        //$this->string = $this->tagsDefinidasPeloUsuario['A']; 
-        //print_r($this->string);
-    }
+    // public function validaStringDoUsuario(String $string): void 
+    // {
+    //     //$this->string = $this->tagsDefinidasPeloUsuario['A']; 
+    //     //print_r($this->string);
+    // }
 
     /*public static function validaTag(string $string): bool
     {   
